@@ -27,7 +27,8 @@ const moviesController = {
             .then(movie => {
                 console.log('---LISTO EL DETALLE');
                 console.log(movie.title);
-                res.render('moviesDetail.ejs', { movie });
+                res.json([movie])
+                // res.render('moviesDetail.ejs', { movie });
             });
     },
     'new': (req, res) => {
