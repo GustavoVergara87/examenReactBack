@@ -2,6 +2,7 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
+const { Console } = require('console');
 
 
 //Aqui tienen otra forma de llamar a cada uno de los modelos
@@ -28,7 +29,7 @@ const moviesController = {
                 console.log('---LISTO EL DETALLE');
                 console.log(movie.title);
                 res.json([movie])
-                // res.render('moviesDetail.ejs', { movie });
+                //res.render('moviesDetail.ejs', { movie });
             });
     },
     'new': (req, res) => {
@@ -118,7 +119,6 @@ const moviesController = {
     },
     update: function (req, res) {
         let movieId = req.params.id;
-
         db.Movie.update(
             {
                 title: req.body.title,
@@ -131,10 +131,12 @@ const moviesController = {
             {
                 where: { id: movieId }
             })
-            .then(() => {
-                return res.redirect('/movies')
-            })
-            .catch(error => res.send(error))
+            .then((result) =>
+            res.json({ msg: "movie actualizada", result, movie: req.body })
+                                // return res.redirect('/movies')
+            )
+            // .catch(error => res.send(error))
+            .catch(error => res.json(error))
     },
     delete: function (req, res) {
         let movieId = req.params.id;
