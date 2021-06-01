@@ -93,7 +93,7 @@ const moviesController = {
             }
         )
             .then(() => {
-                return res.redirect('/movies')
+                return res.redirect('http://localhost:3000/')
             })
             .catch(error => res.json(error))
     },
@@ -115,7 +115,7 @@ const moviesController = {
                 console.log('-----GENERO id :' +  Movie.genre.id);
                 return res.render(path.resolve(__dirname, '..', 'views', 'moviesEdit'), { Movie, allGenres, allActors })
             })
-            .catch(error => res.send(error))
+            .catch(error => res.json(error))
     },
     update: function (req, res) {
         let movieId = req.params.id;
@@ -135,7 +135,7 @@ const moviesController = {
             res.json({ msg: "movie actualizada", result, movie: req.body })
                                 // return res.redirect('/movies')
             )
-            // .catch(error => res.send(error))
+            // .catch(error => res.json(error))
             .catch(error => res.json(error))
     },
     delete: function (req, res) {
@@ -145,7 +145,7 @@ const moviesController = {
             .then(Movie => {
                 return res.render(path.resolve(__dirname, '..', 'views', 'moviesDelete'), { Movie })
             })
-            .catch(error => res.send(error))
+            .catch(error => res.json(error))
     },
     destroy: function (req, res) {
         let movieId = req.params.id;
@@ -154,7 +154,7 @@ const moviesController = {
             .then(() => {
                 return res.redirect('/movies')
             })
-            .catch(error => res.send(error))
+            .catch(error => res.json(error))
     }
 }
 
