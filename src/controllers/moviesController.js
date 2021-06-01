@@ -40,7 +40,7 @@ const moviesController = {
             limit: 5
         })
             .then(movies => {
-                res.render('newestMovies', { movies });
+                res.json( movies );
             });
     },
     'recomended': (req, res) => {
@@ -53,7 +53,7 @@ const moviesController = {
             ]
         })
             .then(movies => {
-                res.render('recommendedMovies.ejs', { movies });
+                res.json( movies );
             });
     },
 
@@ -72,9 +72,9 @@ const moviesController = {
         Promise.all([promGenres])
             .then(([allGenres]) => {
 
-            return res.render('moviesAdd', { allGenres})
+            return res.json( allGenres)
         })
-            .catch(error => res.send(error))
+            .catch(error => res.json(error))
     },
 
     create: function (req, res) {
@@ -95,7 +95,7 @@ const moviesController = {
             .then(() => {
                 return res.redirect('/movies')
             })
-            .catch(error => res.send(error))
+            .catch(error => res.json(error))
     },
     edit: function (req, res) {
         console.log('------ENTRE AL EDITAR -----');
