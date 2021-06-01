@@ -13,7 +13,7 @@ const genresController = {
     'detail': (req, res) => {
         db.Genre.findByPk(req.params.id)
             .then(genre => {
-                res.render(genre);
+                res.json(genre);
             });
     }
 
